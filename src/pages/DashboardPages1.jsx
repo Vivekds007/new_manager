@@ -1,36 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const DashboardPages1 = ({ movies, deleteMovie }) => {
+const DashboardPages1 = ({ users, deleteUser }) => {
   return (
-    <div className="p-4 bg-white shadow rounded">
-      <h1 className="text-2xl font-semibold mb-4">Movie Inventory</h1>
-      <table className="min-w-full bg-white">
+    <div>
+      <table className="min-w-full bg-white border">
         <thead>
           <tr>
-            <th className="py-2 px-4 border-b">Genre</th>
-            <th className="py-2 px-4 border-b">Movie Name</th>
-            <th className="py-2 px-4 border-b">Release Date</th>
-            <th className="py-2 px-4 border-b">Showtime</th>
-            <th className="py-2 px-4 border-b">Image</th>
-            <th className="py-2 px-4 border-b">Actions</th>
+            <th className="py-2">Role</th>
+            <th className="py-2">Name</th>
+            <th className="py-2">Username</th>
+            <th className="py-2">Action</th>
           </tr>
         </thead>
         <tbody>
-          {movies.map((movie) => (
-            <tr key={movie.id}>
-              <td className="py-2 px-4 border-b">{movie.genre}</td>
-              <td className="py-2 px-4 border-b">{movie.name}</td>
-              <td className="py-2 px-4 border-b">{movie.releaseDate}</td>
-              <td className="py-2 px-4 border-b">{movie.showtime}</td>
-              <td className="py-2 px-4 border-b">
-                <img src={movie.imageUrl} alt={movie.name} className="w-16 h-16 object-cover" />
-              </td>
-              <td className="py-2 px-4 border-b">
-                <Link to={`/update-movie/${movie.id}`} className="mr-2 text-blue-500">
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td className="py-2 border-t">{user.role}</td>
+              <td className="py-2 border-t">{user.name}</td>
+              <td className="py-2 border-t">{user.username}</td>
+              <td className="py-2 border-t">
+                <Link
+                  to={`/update-user/${user.id}`}
+                  className="bg-green-500 text-white px-2 py-1 rounded mr-2"
+                >
                   Update
                 </Link>
-                <button onClick={() => deleteMovie(movie.id)} className="text-red-500">
+                <button
+                  onClick={() => deleteUser(user.id)}
+                  className="bg-red-500 text-white px-2 py-1 rounded"
+                >
                   Delete
                 </button>
               </td>

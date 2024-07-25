@@ -2,30 +2,30 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import AddMovie from './pages/AddMovie';
-import UpdateMovie from './pages/UpdateMovie';
+import AddUser from './pages/AddUser';
+import UpdateUser from './pages/UpdateUser';
 import UpdateInfo from './pages/UpdateInfo';
 import Navbar from './components/Navbar';
 import './styles/App.css';
 
 const App = () => {
-  const [movies, setMovies] = useState([]);
-  const [user, setUser] = useState({
+  const [users, setUsers] = useState([]);
+  const [manager, setManager] = useState({
     name: 'John Doe',
     username: 'johndoe',
     password: 'password123',
   });
 
-  const addMovie = (movie) => {
-    setMovies([...movies, { ...movie, id: Date.now().toString() }]);
+  const addUser = (user) => {
+    setUsers([...users, { ...user, id: Date.now().toString() }]);
   };
 
-  const deleteMovie = (id) => {
-    setMovies(movies.filter((movie) => movie.id !== id));
+  const deleteUser = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
   };
 
-  const updateUser = (updatedUser) => {
-    setUser({ ...user, ...updatedUser });
+  const updateManager = (updatedManager) => {
+    setManager({ ...manager, ...updatedManager });
   };
 
   return (
@@ -35,14 +35,14 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route
           path="/profile"
-          element={<Profile user={user} updateUser={updateUser} movies={movies} deleteMovie={deleteMovie} addMovie={addMovie} />}
+          element={<Profile manager={manager} updateManager={updateManager} users={users} deleteUser={deleteUser} />}
         />
-        <Route path="/add-movie" element={<AddMovie addMovie={addMovie} />} />
+        <Route path="/add-user" element={<AddUser addUser={addUser} />} />
         <Route
-          path="/update-movie/:id"
-          element={<UpdateMovie movies={movies} setMovies={setMovies} />}
+          path="/update-user/:id"
+          element={<UpdateUser users={users} setUsers={setUsers} />}
         />
-        <Route path="/update-info" element={<UpdateInfo user={user} updateUser={updateUser} />} />
+        <Route path="/update-info" element={<UpdateInfo manager={manager} updateManager={updateManager} />} />
       </Routes>
     </Router>
   );
